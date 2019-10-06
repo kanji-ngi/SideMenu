@@ -481,7 +481,7 @@ internal extension SideMenuNavigationController {
         let distance = gesture.xTranslation / width
         let progress = max(min(distance * factor(presenting), 1), 0)
         
-        self.activeDelegate?.sideMenuProgress?(menu: self, progress: progress)
+        self.activeDelegate?.sideMenuProgress?(menu: self, progress: Float(progress))
 
         switch (gesture.state) {
         case .began:

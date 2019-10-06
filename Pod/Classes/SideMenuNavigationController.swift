@@ -67,7 +67,7 @@ internal protocol MenuModel {
     @objc optional func sideMenuDidAppear(menu: SideMenuNavigationController, animated: Bool)
     @objc optional func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool)
     @objc optional func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool)
-    @objc optional func sideMenuProgress(menu: SideMenuNavigationController, progress: Float)
+    @objc optional func sideMenuProgress(menu: SideMenuNavigationController, progress: Float, presenting: Bool)
 }
 
 internal protocol SideMenuNavigationControllerTransitionDelegate: class {
@@ -481,7 +481,7 @@ internal extension SideMenuNavigationController {
         let distance = gesture.xTranslation / width
         let progress = max(min(distance * factor(presenting), 1), 0)
         
-        self.activeDelegate?.sideMenuProgress?(menu: self, progress: Float(progress))
+        self.activeDelegate?.sideMenuProgress?(menu: self, progress: Float(progress), presenting: presenting)
 
         switch (gesture.state) {
         case .began:
